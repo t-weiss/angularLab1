@@ -1,0 +1,35 @@
+<div class="content">
+  <H1>TODO List</H1>
+  <p>a place to store your todos</p>
+  <form class="filterForm">
+    <input
+      [(ngModel)]="filterInput"
+      type="text"
+      placeholder="Filter your to-dos"
+    />
+  </form>
+  <ol>
+    <li *ngFor="let item of items; index as i">
+      <p [ngClass]="{ completed: item.completed }">
+        <a
+          (click)="done(i)"
+          id="completeButton"
+          *ngIf="item.completed === false"
+          >complete </a
+        >{{ item.task }}
+      </p>
+      <a class="far fa-window-close" (click)="removeTodo(i)"></a>
+    </li>
+  </ol>
+  <form (ngSubmit)="addTodo()">
+    <input
+      [(ngModel)]="newTodo.task"
+      name="task"
+      type="text"
+      placeholder="Add your to-do"
+    />
+    <button type="submit">Add</button>
+  </form>
+</div>
+
+<!-- [ngClass]="{ completed: completed }" -->
